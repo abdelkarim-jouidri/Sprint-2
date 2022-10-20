@@ -40,7 +40,7 @@
 								   d-flex gap-1 
 								fw-bold border-0 px-20px 
 					 			text-white fs-15px align-items-center"
-								 type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								 type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addTaskButton" >
 					 <i class="bi bi-plus fs-25px text-black"></i> <a>Add Task</a>
 				</div>
 			</div>
@@ -48,29 +48,51 @@
 			<div class="row ">
 				<div class="col-lg-4 col-md-6 col-xs-12 mb-4 ">
 					<div class="me-10px">
-						<div class="row pt-2 bg-black text-white rounded-top">
-							<h4 class="">To do (<span id="to-do-tasks-count">5</span>)</h4>
+						<div class="row pt-2 bg-black text-white rounded-top" id="toDoHeadingContainer">
+							<!-- <h4 class="">To do (<span id="to-do-tasks-count">5</span>)</h4> -->
 
 						</div>
 						<div class="row " id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<button class="border-0 border-top py-2 d-flex gap-4">
+							<button class="border-0 border-top py-2 d-flex gap-4 " data-id="${task.id}" >
+								<div class="">
+									<i class="bi bi-question-circle-fill fs-15px text-success"></i> 
+								</div>
+								<div class="text-start w-100">
+									<div class="fw-bold">title</div>
+									<div class="">
+										<div class="">#${task.id+1} created in ${task.date}</div>
+										<div class="" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">${task.description}</div>
+									</div>
+								<div class="d-flex justify-content-between">
+									<div class="">
+										<span class="btn btn-primary btn-xs">${task.priority}</span>
+										<span class="btn btn-secondary btn-xs">${task.type}</span>
+									</div>
+									<div class="">
+										<span class="btn btn-danger btn-xs deleteBtn" onclick="alert('clicked')">Delete</span>
+										<span class="btn btn-info btn-xs">Edit</span>
+									</div>
+								</div>
+								</div>
+								</button>
+							<!-- <button class="border-0 border-top py-2 d-flex gap-4">
 								<div class="">
 									<i class="bi bi-question-circle-fill fs-15px text-success"></i>
 								</div>
 								<div class="text-start">
-									<div class="fw-bold">Keep all the updated requirements in one place</div>
+									<div class="fw-bold" id="taskTitle">Keep all the updated requirements in one place</div>
 									<div class="">
 										<div class="">#1 created in 2022-10-08</div>
-										<div class="" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">There is hardly anything more frustrating than having t...</div>
+										<div class="" id="titleDescription" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">There is hardly anything more frustrating than having t...</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary btn-xs">High</span>
 										<span class="btn btn-secondary btn-xs">Feature</span>
 									</div>
 								</div>
-							</button>
-							<button class="border-0 border-top py-2 d-flex gap-4">
+							</button> -->
+							<!-- <button class="border-0 border-top py-2 d-flex gap-4">
 								<div class="">
 									<i class="bi bi-question-circle-fill fs-15px text-success"></i>
 								</div>
@@ -79,10 +101,10 @@
 									<div class="">
 										<div class="">#2 created in 2022-10-08</div>
 										<div class="" title="Descriptive requirements are very helpful when it comes to understanding the context of a problem, yet finally it is good to precisely specify what is expected. Thus the developer will not have to look for the actual requirements in a long, descriptive text but he will be able to easily get to the essence. One might find that sometimes — when acceptance criteria are well defined — there is little or no need for any additional information. Example:
-						a) User navigates to “/accounts” and clicks on red download CSV button
-						b) Popup appears with two buttons: “This year” and “Last year”
-						c) If user clicked on “Last year” download is initiated
-						d) CSV downloaded includes following columns…">Descriptive requirements are very helpful when it comes...</div>
+											a) User navigates to “/accounts” and clicks on red download CSV button
+											b) Popup appears with two buttons: “This year” and “Last year”
+											c) If user clicked on “Last year” download is initiated
+											d) CSV downloaded includes following columns…">Descriptive requirements are very helpful when it comes...</div>
 									</div>
 									<div class="">
 										<span class="btn btn-primary btn-xs">High</span>
@@ -137,19 +159,19 @@
 										<span class="btn btn-secondary btn-xs">Feature</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-xs-12 mb-4 ">
 					<div class="me-10px ">
-						<div class="row pt-2 bg-black text-white rounded-top">
-							<h4 class="">In Progress (<span id="in-progress-tasks-count">4</span>)</h4>
+						<div class="row pt-2 bg-black text-white rounded-top " id="inProgressHeadingContainer">
+							<!-- <h4 class="">In Progress (<span id="in-progress-tasks-count">4</span>)</h4> -->
 
 						</div>
 						<div class="row" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
-							<button class="border-0 border-top py-2 d-flex gap-4">
+							<!-- <button class="border-0 border-top py-2 d-flex gap-4">
 								<div class="spinner-border text-success spinner-border-sm" role="status">
 									<span class="visually-hidden">Loading...</span>
 								</div>
@@ -212,19 +234,19 @@
 										<span class="btn btn-secondary btn-xs">Feature</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-xs-12 mb-4 ">
 					<div class="me-10px">
-						<div class="row pt-2 bg-black text-white rounded-top">
-							<h4 class="">Done (<span id="done-tasks-count">4</span>)</h4>
+						<div class="row pt-2 bg-black text-white rounded-top" id="doneHeadingContainer">
+							<!-- <h4 class="">Done (<span id="done-tasks-count">4</span>)</h4> -->
 
 						</div>
 						<div class="row" id="done-tasks">
 							<!-- DONE TASKS HERE -->
-							<button class="border-0 border-top py-2 d-flex gap-4">
+							<!-- <button class="border-0 border-top py-2 d-flex gap-4">
 								<div class="">
 									<i class="bi bi-check2-circle fs-15px text-success"></i> 
 								</div>
@@ -239,8 +261,8 @@
 										<span class="btn btn-secondary btn-xs">Feature</span>
 									</div>
 								</div>
-							</button>
-							<button class="border-0 border-top py-2 d-flex gap-4">
+							</button> -->
+							<!-- <button class="border-0 border-top py-2 d-flex gap-4">
 								<div class="">
 									<i class="bi bi-check2-circle fs-15px text-success"></i> 
 								</div>
@@ -287,7 +309,7 @@
 										<span class="btn btn-secondary btn-xs">Feature</span>
 									</div>
 								</div>
-							</button>
+							</button> -->
 						</div>
 					</div>
 				</div>
@@ -319,60 +341,66 @@
 					<form>
 						<div class="mb-3">
 						  <label for="title" class="form-label">Title</label>
-						  <input type="title" class="form-control border-black btn-outline-white" id="titleInput" >
+						  <input type="title" class="text-black form-control border-black btn-outline-white" id="titleInput" value='' >
 						</div>
 						<div class="mb-3">
 							<label for="type" class="form-label">Type</label>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-								<label class="form-check-label" for="flexRadioDefault1">
+								<input class="form-check-input " type="radio" name="flexRadioDefault" id="featureOption" value="Feature" checked>
+								<label class="form-check-label" for="featureOption">
 								  Feature
 								</label>
 							  </div>
-							  <div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-								<label class="form-check-label" for="flexRadioDefault2">
+							  <div class="form-check" >
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="bugOption" value="Bug">
+								<label class="form-check-label" for="bugOption">
 								  Bug
 								</label>
 							  </div>
 						  </div>
 						  <div class="dropdown-center w-100 mb-2">
 							<div class="fw-bolder mb-1">Priority</div>
-							<button class="btn border-black btn-outline-white dropdown-toggle w-100 bg-white text-black text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								select from options ...
-							</button>
-							<ul class="dropdown-menu">
-							  <li><a class="dropdown-item" href="#">High</a></li>
-							  <li><a class="dropdown-item" href="#">Low</a></li>
-							</ul>
+							<select name="select" class="w-100 p-2 fw-bold rounded" id="priorityOptions">
+								<option value="none" selected>Select from options...</option>
+								<option value="High">High</option>
+								<option value="Low" >Low</option>
+							</select>
 						  </div>
 						  <div class="dropdown-center w-100 mb-2">
 							<div class="fw-bolder mb-1">Status</div>
-							<button class="btn border-black btn-outline-white dropdown-toggle w-100 bg-white text-black text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<!-- <button class="btn border-black btn-outline-white dropdown-toggle w-100 bg-white text-black text-start" type="button" 
+									data-bs-toggle="dropdown" aria-expanded="false" id="taskStatus">
 								select from options ...
-							</button>
-							<ul class="dropdown-menu">
-							  <li><a class="dropdown-item" href="#">To do</a></li>
-							  <li><a class="dropdown-item" href="#">In Progress</a></li>
-							  <li><a class="dropdown-item" href="#">Done</a></li>
-							</ul>
+							
+							<select class="dropdown-menu"  id="taskType">
+							  <option class="dropdown-item" >To do</option>
+							  <option><a class="dropdown-item" href="#">In Progress</a></option>
+							  <option><a class="dropdown-item" href="#">Done</a></option>
+							</select>
+						</button> -->
+						<select name="select" class="w-100 p-2 fw-bold rounded" id="statusOptions">
+							<option value="value1" selected>Select from options...</option>
+							<option value="To Do">To Do</option>
+							<option value="In Progress" >In Progress</option>
+							<option value="Done">Done</option>
+						</select>
 						  </div>
 						  <div id="date-picker" class="mb-2" inline="true">
 							<label for="date" class="fw-bolder mb-1">Date</label>
 							<input type="date" 
 							value="dd-mm-yyyy"
 							class="w-100 d-block p-2 btn border-black btn-outline-white text-black text-start"
-							min="2018-01-01" max="2024-12-31">							
+							min="2018-01-01" max="2024-12-31" id="taskDate">							
 						  </div>
 						  <div class="form-group">
 							<label for="descriptionTextarea" class="fw-bolder mb-1">Description</label>
-							<textarea class="form-control btn-outline-white border-black" id="descriptionTextarea" rows="3"></textarea>
+							<textarea class="form-control btn-outline-white border-black"  rows="3" id="taskDescription"></textarea>
 						  </div>
 					</form>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalButton">Close</button>
+				<button type="button" class="btn btn-primary" id="saveChangesButton">Save changes</button>
 				</div>
 			</div>
 			</div>
@@ -382,6 +410,8 @@
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
+	<script  src="assets/js/data.js"></script>
+	<script  src="assets/js/app.js"></script>
 	<!-- ================== END core-js ================== -->
 </body>
 </html>
