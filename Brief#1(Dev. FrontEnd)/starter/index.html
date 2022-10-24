@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<!-- ================== END core-css ================== -->
 </head>
-<body>
+<body >
 
 	<!-- BEGIN #app -->
 	<div id="app" class="app-without-sidebar ">
@@ -40,7 +40,7 @@
 								   d-flex gap-1 
 								fw-bold border-0 px-20px 
 					 			text-white fs-15px align-items-center"
-								 type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addTaskButton" >
+								 type="button" data-bs-toggle="modal" data-bs-target="#addTaskModal" id="addTaskButton" >
 					 <i class="bi bi-plus fs-25px text-black"></i> <a>Add Task</a>
 				</div>
 			</div>
@@ -330,7 +330,7 @@
 
   
 		
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -346,7 +346,7 @@
 						<div class="mb-3">
 							<label for="type" class="form-label">Type</label>
 							<div class="form-check">
-								<input class="form-check-input " type="radio" name="flexRadioDefault" id="featureOption" value="Feature" checked>
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="featureOption" value="Feature" checked>
 								<label class="form-check-label" for="featureOption">
 								  Feature
 								</label>
@@ -368,18 +368,9 @@
 						  </div>
 						  <div class="dropdown-center w-100 mb-2">
 							<div class="fw-bolder mb-1">Status</div>
-							<!-- <button class="btn border-black btn-outline-white dropdown-toggle w-100 bg-white text-black text-start" type="button" 
-									data-bs-toggle="dropdown" aria-expanded="false" id="taskStatus">
-								select from options ...
-							
-							<select class="dropdown-menu"  id="taskType">
-							  <option class="dropdown-item" >To do</option>
-							  <option><a class="dropdown-item" href="#">In Progress</a></option>
-							  <option><a class="dropdown-item" href="#">Done</a></option>
-							</select>
-						</button> -->
+						
 						<select name="select" class="w-100 p-2 fw-bold rounded" id="statusOptions">
-							<option value="value1" selected>Select from options...</option>
+							<option value="none" selected>Select from options...</option>
 							<option value="To Do">To Do</option>
 							<option value="In Progress" >In Progress</option>
 							<option value="Done">Done</option>
@@ -394,17 +385,86 @@
 						  </div>
 						  <div class="form-group">
 							<label for="descriptionTextarea" class="fw-bolder mb-1">Description</label>
-							<textarea class="form-control btn-outline-white border-black"  rows="3" id="taskDescription"></textarea>
+							<textarea class="form-control btn-outline-white border-black text-black"  rows="3" id="taskDescription"></textarea>
 						  </div>
 					</form>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalButton">Close</button>
-				<button type="button" class="btn btn-primary" id="saveChangesButton">Save changes</button>
+				<button type="button" class="btn btn-primary" id="saveChangesButton" onclick="saveTask()">Save changes</button>
 				</div>
 			</div>
 			</div>
 		</div>
+	<!-- BEGIN EDIT TASK MODAL -->
+	<div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h1 class="modal-title fs-5" id="editTaskModalLabel">Edit Task</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="mb-3">
+					  <label for="title" class="form-label">Title</label>
+					  <input type="title" class="text-black form-control border-black btn-outline-white" id="editTitleInput" value='' >
+					</div>
+					<div class="mb-3">
+						<label for="type" class="form-label">Type</label>
+						<div class="edit-form-check">
+							<input class="form-check-input " type="radio" name="flexRadioDefault" id="edit-featureOption" value="Feature" checked>
+							<label class="form-check-label" for="featureOption">
+							  Feature
+							</label>
+						  </div>
+						  <div class="edit-form-check" >
+							<input class="form-check-input" type="radio" name="flexRadioDefault" id="edit-bugOption" value="Bug">
+							<label class="form-check-label" for="bugOption">
+							  Bug
+							</label>
+						  </div>
+					  </div>
+					  <div class="dropdown-center w-100 mb-2">
+						<div class="fw-bolder mb-1">Priority</div>
+						<select name="select" class="w-100 p-2 fw-bold rounded" id="editTaskPriorityOptions">
+							<option value="none" selected>Select from options...</option>
+							<option value="High">High</option>
+							<option value="Low" >Low</option>
+						</select>
+					  </div>
+					  <div class="dropdown-center w-100 mb-2">
+						<div class="fw-bolder mb-1">Status</div>
+					
+					<select name="select" class="w-100 p-2 fw-bold rounded" id="editStatusOptions">
+						<option value="none" selected>Select from options...</option>
+						<option value="To Do">To Do</option>
+						<option value="In Progress" >In Progress</option>
+						<option value="Done">Done</option>
+					</select>
+					  </div>
+					  <div id="date-picker" class="mb-2" inline="true">
+						<label for="date" class="fw-bolder mb-1">Date</label>
+						<input type="date" 
+						value="dd-mm-yyyy"
+						class="w-100 d-block p-2 btn border-black btn-outline-white text-black text-start"
+						min="2018-01-01" max="2024-12-31" id="editTaskDate">							
+					  </div>
+					  <div class="form-group">
+						<label for="descriptionTextarea" class="fw-bolder mb-1">Description</label>
+						<textarea class="text-black form-control btn-outline-white border-black"  rows="3" id="editTaskDescription" value=""></textarea>
+					  </div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeEditsButton">Close</button>
+			<button type="button" class="btn btn-primary" id="saveEditsButton">Save changes</button>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+	<!-- END EDIT TASK MODAL -->
 	
 	
 	<!-- ================== BEGIN core-js ================== -->
