@@ -7,7 +7,7 @@
 // Declaration of DOM objects
 const toDoContainer = document.getElementById('to-do-tasks')
 const inProgressContainer = document.getElementById('in-progress-tasks')
-const DoneContainer = document.getElementById('done-tasks')
+const doneContainer = document.getElementById('done-tasks')
 const inProgressHeadingContainer = document.getElementById('inProgressHeadingContainer')
 const doneHeadingContainer = document.getElementById('doneHeadingContainer')
 const toDoHeadingContainer = document.getElementById('toDoHeadingContainer')
