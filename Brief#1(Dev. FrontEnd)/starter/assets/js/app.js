@@ -4,23 +4,15 @@
  * 
  */
 
-// Declaration of DOM objects
-const toDoContainer = document.getElementById('to-do-tasks')
-const inProgressContainer = document.getElementById('in-progress-tasks')
-const doneContainer = document.getElementById('done-tasks')
-const inProgressHeadingContainer = document.getElementById('inProgressHeadingContainer')
-const doneHeadingContainer = document.getElementById('doneHeadingContainer')
-const toDoHeadingContainer = document.getElementById('toDoHeadingContainer')
-const featureOption = document.getElementById('featureOption')
-const bugFeature = document.getElementById('bugOption')
-const saveBtn = document.getElementById('saveChangesButton')
-const titleInput = document.getElementById('titleInput')
-const priorityOptions = document.getElementById('priorityOptions')
-const statusOptions = document.getElementById('statusOptions')
-const taskDate = document.getElementById('taskDate')
-const taskDescription = document.getElementById('taskDescription')
-
 function showTasks(){
+    // Declaration of DOM objects
+    const toDoContainer = document.getElementById('to-do-tasks')
+    const inProgressContainer = document.getElementById('in-progress-tasks')
+    const doneContainer = document.getElementById('done-tasks')
+    const inProgressHeadingContainer = document.getElementById('inProgressHeadingContainer')
+    const doneHeadingContainer = document.getElementById('doneHeadingContainer')
+    const toDoHeadingContainer = document.getElementById('toDoHeadingContainer')
+
     toDoContainer.innerHTML = '';
     inProgressContainer.innerHTML = '';
     doneContainer.innerHTML = '';
@@ -90,7 +82,7 @@ function handleEdit(){
     // Retrieve the data of the input fields  from the selected task button
     document.getElementById('editTitleInput').value = tasks[index].title
     document.getElementById('editTaskDescription').value = tasks[index].description
-    tasks[index].type ==='Feature' ? document.getElementById('edit-featureOption').checked=true : document.getElementById('edit-bugOption').checked=true
+    tasks[index].type ==='Feature' ? document.getElementById('editFeatureOption').checked=true : document.getElementById('editBugOption').checked=true
     document.getElementById('editTaskDate').value = tasks[index].date
     document.getElementById('editStatusOptions').value = tasks[index].status
     document.getElementById('editTaskPriorityOptions').value = tasks[index].priority
@@ -110,11 +102,20 @@ function editAndShow(index){
     tasks[index].priority = document.getElementById('editTaskPriorityOptions').value 
     tasks[index].date = document.getElementById('editTaskDate').value 
     tasks[index].status = document.getElementById('editStatusOptions').value
+    tasks[index].type = document.getElementById('editFeatureOption').checked ? document.getElementById('editFeatureOption').value
+                                                                              : document.getElementById('editBugOption').value
     //update the state of all the tasks buttons
     showTasks()
 }
 
 function saveTask() {
+    const titleInput = document.getElementById('titleInput')
+    const priorityOptions = document.getElementById('priorityOptions')
+    const statusOptions = document.getElementById('statusOptions')
+    const taskDate = document.getElementById('taskDate')
+    const taskDescription = document.getElementById('taskDescription')
+    const featureOption = document.getElementById('featureOption')
+    const bugFeature = document.getElementById('bugOption')
     // Recuperer task attributes a partir les champs input
     // Créez task object
 
