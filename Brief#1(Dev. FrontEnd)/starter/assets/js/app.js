@@ -25,16 +25,16 @@ function showTasks(){
     inProgressContainer.innerHTML = '';
     doneContainer.innerHTML = '';
     inProgressHeadingContainer.innerHTML = `<h4 class="">In Progress (<span id="in-progress-tasks-count">
-                                        ${tasks.filter(el=> el.status==='In Progress').length}</span>)</h4>`
+                                        ${tasks.filter(taskElement => taskElement.status==='In Progress').length}</span>)</h4>`
     doneHeadingContainer.innerHTML = `<h4 class="">Done (<span id="done-tasks-count">
-                                        ${tasks.filter(el=> el.status==='Done').length}</span>)</h4>`
+                                        ${tasks.filter(taskElement => taskElement.status==='Done').length}</span>)</h4>`
     toDoHeadingContainer.innerHTML = `<h4 class="">To Do (<span id="to-do-tasks-count">
-                                        ${tasks.filter(el=> el.status==='To Do').length}</span>)</h4>`
+                                        ${tasks.filter(taskElement => taskElement.status==='To Do').length}</span>)</h4>`
     tasks.forEach(task => {
 
         if(task.status === 'To Do') toDoContainer.insertAdjacentHTML('beforeend', createButtonTemplate(task))
         if(task.status === 'In Progress') inProgressContainer.insertAdjacentHTML('beforeend', createButtonTemplate(task))
-        if(task.status === 'Done') DoneContainer.insertAdjacentHTML('beforeend', createButtonTemplate(task))
+        if(task.status === 'Done') doneContainer.insertAdjacentHTML('beforeend', createButtonTemplate(task))
     })
     //clear submitted data from input fields
     titleInput.value = ''
@@ -46,7 +46,7 @@ function showTasks(){
 }
 
 function setId(){
-    for(let task of tasks) task.id = tasks.findIndex(el => el===task)
+    for(let task of tasks) task.id = tasks.findIndex(taskElement => taskElement===task)
 }
 
 // Show all the tasks from the 'tasks' array once the page is fully loaded
