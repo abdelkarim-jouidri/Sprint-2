@@ -23,7 +23,7 @@ const taskDescription = document.getElementById('taskDescription')
 function showTasks(){
     toDoContainer.innerHTML = '';
     inProgressContainer.innerHTML = '';
-    DoneContainer.innerHTML = '';
+    doneContainer.innerHTML = '';
     inProgressHeadingContainer.innerHTML = `<h4 class="">In Progress (<span id="in-progress-tasks-count">
                                         ${tasks.filter(el=> el.status==='In Progress').length}</span>)</h4>`
     doneHeadingContainer.innerHTML = `<h4 class="">Done (<span id="done-tasks-count">
