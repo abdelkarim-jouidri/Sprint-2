@@ -78,7 +78,7 @@ function createButtonTemplate(task){
 function handleEdit(){
     // Get the the id of the selected task button
     let index = window.event.target.closest('.btnParent').dataset.id
-
+    document.querySelector('.editBtn').removeEventListener('click',handleEdit)
     // Retrieve the data of the input fields  from the selected task button
     document.getElementById('editTitleInput').value = tasks[index].title
     document.getElementById('editTaskDescription').value = tasks[index].description
@@ -88,10 +88,14 @@ function handleEdit(){
     document.getElementById('editTaskPriorityOptions').value = tasks[index].priority
 
     //listen for the click event on the save button from the edit modal and call the edit and show function
-    document.getElementById('saveEditsButton').onclick = ()=>{
+    document.getElementById('saveEditsButton').addEventListener('click',()=>{
+    document.querySelector('#saveEditsButton').removeEventListener('click',()=>editAndShow(index))
+
         editAndShow(index)
         document.getElementById('closeEditsButton').click()
-    };
+    }
+    )
+    
 }
 
 
@@ -109,6 +113,8 @@ function editAndShow(index){
 }
 
 function saveTask() {
+    // Declaration of DOM objects
+
     const titleInput = document.getElementById('titleInput')
     const priorityOptions = document.getElementById('priorityOptions')
     const statusOptions = document.getElementById('statusOptions')
@@ -116,6 +122,7 @@ function saveTask() {
     const taskDescription = document.getElementById('taskDescription')
     const featureOption = document.getElementById('featureOption')
     const bugFeature = document.getElementById('bugOption')
+
     // Recuperer task attributes a partir les champs input
     // Créez task object
 
@@ -131,7 +138,7 @@ function saveTask() {
     if(!titleInput.value || !priorityOptions.value || !statusOptions.value || !taskDescription.value ) {
         alert('empty input fields')
         return ;
-    }
+        }
     // Ajoutez object au Array
     
     tasks.push(task)
