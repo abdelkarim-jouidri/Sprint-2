@@ -6,8 +6,7 @@
     //CONNECT TO MYSQL DATABASE USING MYSQLI
     $connexion = mysqli_connect($servername,$username,$password,$dbname);
     
-    $query = "SELECT * FROM tasks";
-    $result = mysqli_query($connexion,$query);
+    
     
    
 

@@ -33,8 +33,6 @@
 	<link href="assets/css/vendor.min.css" rel="stylesheet" />
 	<link href="assets/css/default/app.min.css" rel="stylesheet" />
 	
-	<link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<!-- ================== END core-css ================== -->
 </head>
 <body>
@@ -241,7 +239,7 @@
 				</div>
 				
 				<div class="ms-auto">
-				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+				<a href="#modal-task" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill" onclick="handleAddTaskBtn()"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
 				</div>
 			</div>
 			
@@ -288,7 +286,6 @@
 							<?php 
 									// session_start();
 
-									var_dump(($_SESSION));
 
 								// var_dump($to_do_data)
 								?>
@@ -296,29 +293,26 @@
 								<?php 
 								$title = $task['title'];
 								$description = $task['description'];
+								$status = $task['status'];
 								$datetime = $task['task_date'];
 								$type = $task['type'];
 								$priority = $task['priority'];
 								$id = $task['id'];
 								$index = array_search($task,$data)+1;
-								echo  "<button class='border-0 border-top py-2 d-flex gap-4 'data-bs-toggle='modal' data-bs-target='#modal-task'  >
-								<div class=''>
+								echo  "<button class='border-0 border-top py-2 d-flex gap-4 'data-bs-toggle='modal' data-bs-target='#modal-task' onclick=fillModal({$id}) >
+								<div class='' data-value='$status' id='status-$id'>
 									<i class='bi bi-question-circle-fill fs-15px text-success'></i> 
 								</div>
-								<div class='text-start w-100'>
-									<div class='fw-bold'>${title}</div>
+								<div class='text-start w-100' >
+									<div class='fw-bold' data-value='$title'  id='title-$id'>${title}</div>
 									<div class=''>
-										<div class=''> ${datetime}</div>
-										<div class='' title='as they can be helpful in reproducing the steps that caused the problem in the first place.'>${description}</div>
+										<div class='' data-value='$datetime' id='datetime-$id' > #${index} created at ${datetime}</div>
+										<div class='' data-value='$description' id='description-$id'>${description}</div>
 									</div>
 								<div class='d-flex justify-content-between'>
 									<div class=''>
-										<span class='btn btn-primary btn-xs'>${type}</span>
-										<span class='btn btn-secondary btn-xs'>${priority}</span>
-									</div>
-									<div class=''>
-										<span class='btn btn-danger btn-xs deleteBtn' onclick='alert('clicked')'>Delete</span>
-										<span class='btn btn-info btn-xs'>Edit</span>
+										<span class='btn btn-primary btn-xs' data-value='$type' id='type-$id'>${type}</span>
+										<span class='btn btn-secondary btn-xs' data-value='$priority' id='priority-$id'>${priority}</span>
 									</div>
 								</div>
 								</div>
@@ -357,7 +351,6 @@
 								$type = $task['type'];
 								$id = $task['id'];
 								$priority = $task['priority'];
-								echo $datetime;
 								$index = array_search($task,$data)+1;
 								echo  "<button class='border-0 border-top py-2 d-flex gap-4 ' data-bs-toggle='modal' data-bs-target='#modal-task' onclick=fillModal({$id})>
 								<div class='spinner-border text-success spinner-border-sm' role='status' data-value='$status' id='status-$id'> 
@@ -373,10 +366,6 @@
 									<div class=''>
 										<span class='btn btn-primary btn-xs' data-value='$type' id='type-$id'>${type}</span>
 										<span class='btn btn-secondary btn-xs' data-value='$priority' id='priority-$id'>${priority}</span>
-									</div>
-									<div class=''>
-										<span class='btn btn-danger btn-xs deleteBtn' >Delete</span>
-										<span class='btn btn-info btn-xs'>Edit</span>
 									</div>
 								</div>
 								</div>
@@ -401,37 +390,33 @@
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
 							<!-- DONE TASKS HERE -->
 							<?php 
-								//PHP CODE HERE
-								//DATA FROM getTasks() FUNCTION
-								var_dump($data);
 								?>
 								<?php foreach($done_data as $task) : ?>
 								<?php 
+								//PHP CODE HERE
+								//DATA FROM getTasks() FUNCTION
 								$title = $task['title'];
+								$status = $task['status'];
 								$description = $task['description'];
 								$datetime = $task['task_date'];
 								$type = $task['type'];
 								$priority = $task['priority'];
 								$id = $task['id'];
 								$index = array_search($task,$data)+1;
-								echo  "<button class='border-0 border-top py-2 d-flex gap-4 ' data-bs-toggle='modal' data-bs-target='#modal-task' >
-								<div class=''>
+								echo  "<button class='border-0 border-top py-2 d-flex gap-4 ' data-bs-toggle='modal' data-bs-target='#modal-task' onclick=fillModal({$id}) >
+								<div class='' data-value='$status' id='status-$id'>
 								<i class='bi bi-check2-circle fs-15px text-success'></i>
 								</div>
-								<div class='text-start w-100'>
-									<div class='fw-bold'>${title}</div>
+								<div class='text-start w-100' >
+									<div class='fw-bold' data-value='$title'  id='title-$id'>${title}</div>
 									<div class=''>
-										<div class=''> ${datetime}</div>
-										<div class='' title='as they can be helpful in reproducing the steps that caused the problem in the first place.'>${description}</div>
+										<div class='' data-value='$datetime' id='datetime-$id' > #${index} created at ${datetime}</div>
+										<div class='' data-value='$description' id='description-$id'>${description}</div>
 									</div>
 								<div class='d-flex justify-content-between'>
 									<div class=''>
-										<span class='btn btn-primary btn-xs'>${type}</span>
-										<span class='btn btn-secondary btn-xs'>${priority}</span>
-									</div>
-									<div class=''>
-										<span class='btn btn-danger btn-xs deleteBtn' onclick='alert('clicked')'>Delete</span>
-										<span class='btn btn-info btn-xs'>Edit</span>
+										<span class='btn btn-primary btn-xs' data-value='$type' id='type-$id'>${type}</span>
+										<span class='btn btn-secondary btn-xs' data-value='$priority' id='priority-$id'>${priority}</span>
 									</div>
 								</div>
 								</div>
@@ -456,17 +441,17 @@
 	<div class="modal fade" id="modal-task">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST" id="form-task">
+				<form action="scripts.php" method="POST" id="form-task">
 					<div class="modal-header">
 						<h5 class="modal-title">Add Task</h5>
 						<a href="#" class="btn-close" data-bs-dismiss="modal"></a>
 					</div>
 					<div class="modal-body">
 							<!-- This Input Allows Storing Task Index  -->
-							<input type="hidden" id="task-id">
+							<input type="hidden" id="task-id" name="task_id">
 							<div class="mb-3">
 								<label class="form-label">Title</label>
-								<input type="text" class="form-control"  id="task-title" name="task_title" value=""/>
+								<input type="text" class="form-control"  id="task-title" name="task_title" value="" />
 							</div>
 							<div class="mb-3">
 								<label class="form-label">Type</label>
@@ -526,7 +511,7 @@
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<!-- ================== END core-js ================== -->
-	<script src="assets/js/scripts.js"></script>
+	<script src="scripts.js"></script>
 
 	<script>
 		//reloadTasks();
