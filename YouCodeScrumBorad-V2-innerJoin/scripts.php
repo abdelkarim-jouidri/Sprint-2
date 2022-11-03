@@ -1,10 +1,9 @@
 <?php
     //INCLUDE DATABASE FILE
-    include('/xampp/htdocs/YouCodeScrumBorad-V2/database.php');
+    include('database.php');
     //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
     session_start();
 
-    // $_SESSION['message'] = "Task has been updated successfully !";
 
     //ROUTING
     if(isset($_POST['save']))        saveTask();
@@ -28,12 +27,9 @@
         $result = mysqli_query($connexion,$query);
         $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
         
-        // var_dump($data);
         return $data;
 
     }
-
-    // getTasks();
 
     function saveTask()
     {

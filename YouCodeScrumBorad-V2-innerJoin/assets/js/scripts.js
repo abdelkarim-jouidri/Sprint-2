@@ -18,3 +18,5 @@ function handleAddTaskBtn(){
 
     document.getElementById('form-task').reset()
 }
+
+

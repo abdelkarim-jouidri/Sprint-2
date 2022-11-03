@@ -283,10 +283,6 @@
 						</div>
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<?php 
-
-
-								?>
 								<?php foreach($to_do_data as $task) : ?>
 								<?php 
 								$title = $task['title'];
@@ -335,12 +331,7 @@
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
 						
-							<?php 
-								
-								
-								//PHP CODE HERE
-								//DATA FROM getTasks() FUNCTION
-								?>
+							
 								<?php foreach($in_progress_data as $task) : ?>
 								<?php 
 								$title = $task['title'];
@@ -389,9 +380,7 @@
 						</div>
 						<div class="list-group list-group-flush rounded-bottom overflow-hidden panel-body p-0" id="done-tasks">
 							<!-- DONE TASKS HERE -->
-							<?php 
-								// var_dump($done_data);
-								?>
+							
 								<?php foreach($done_data as $task) : ?>
 								<?php 
 								//PHP CODE HERE
@@ -501,7 +490,7 @@
 					</div>
 					<div class="modal-footer">
 						<a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn">Delete</a>
+						<button type="submit" name="delete" class="btn btn-danger task-action-btn" id="task-delete-btn" >Delete</a>
 						<button type="submit" name="update" class="btn btn-warning task-action-btn" id="task-update-btn">Update</a>
 						<button type="submit" name="save" class="btn btn-primary task-action-btn" id="task-save-btn">Save</button>
 					</div>
